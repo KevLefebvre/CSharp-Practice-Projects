@@ -1,4 +1,8 @@
-﻿namespace GuessingGame
+﻿/*
+ * First Guessing game project. The program ask for the user to find a secret word. Added a guess count limit so the user only have 3 chances to make it more challenging.
+ * Learned While loops, if statements, initiating variables.
+ */
+namespace GuessingGame
 {
     internal class Program
     {
