@@ -14,3 +14,14 @@ Simple console game where the player guesses a random word.
 - If statements
 
 ---
+### 2. RockPaperScissorsGame
+Simple console game where the player can play rock, paper and scissors.
+
+**Concepts Practiced:**
+- Do/while loops
+- Classes
+- Methods
+- If statements
+- Comparison of value
+- Rng implementation
+- User inputs
