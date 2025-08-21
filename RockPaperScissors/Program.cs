@@ -1,6 +1,7 @@
 ﻿/*
   This is a Rock Paper Scissor Game.
-  Practiced do/while loops, classes, methods, if statements, comparison, rng implementation, user input.
+  Practiced do/while loops, classes, methods, if statements, comparison, rng implementation, user input, switch, validations,interpolation, concatenation
+  Updated code for better comprehension/practice overtime
  */
 using System.Runtime.Intrinsics.Arm;
 
@@ -10,50 +11,81 @@ namespace RockPaperScissors
     {
         static void Main(string[] args)
         {
-            string playerChoice;
+            string playerInput;
             string rollResult;
-            string playAgain;
-            rngNumbers roll = new rngNumbers();
+            RngNumbers roll = new RngNumbers();
+            RngNumbers yesOrNo = new RngNumbers();
             bool continueGame = true;
+            
 
             do
             {
-
+                // Player Choice
                 Console.Write("Rock, Paper or Scissors?: ");
-                playerChoice = Console.ReadLine()?.Trim().ToLower();
+                playerInput = Console.ReadLine()?.Trim().ToLower();
 
-                if (playerChoice != "rock" && playerChoice != "paper" && playerChoice != "scissors")
+                //Player Choice validation
+                if (playerInput != "rock" && playerInput != "paper" && playerInput != "scissors")
                 {
                     Console.WriteLine("Invalid choice, please try again.");
                     continue;
                 }
 
-                rollResult = roll.getRngChoice();
-                if (rollResult == playerChoice)
+                //Computer Roll
+                rollResult = roll.GetRngChoice();
+                Console.WriteLine($"The computer chose: {rollResult}");
+                /*  
+                    called interpolation, $ tells c# its interpolation, can embed calculation, formatting, methods calls.
+                    Basic way to print on Console. Example above is better esp with more variables.
+                    Console.WriteLine("The computer chose: " + rollResult); This is called concatenation + + + 
+                */
+
+                //Result
+                if (rollResult == playerInput)
                 {
-                    Console.WriteLine("The computer chose: " + rollResult);
                     Console.WriteLine("It's a Draw!");
                 }
-                else if ((rollResult == "rock" && playerChoice == "paper") ||
-                         (rollResult == "paper" && playerChoice == "scissors") ||
-                         (rollResult == "scissors" && playerChoice == "rock"))
+                else if ((rollResult == "rock" && playerInput == "paper") ||
+                         (rollResult == "paper" && playerInput == "scissors") ||
+                         (rollResult == "scissors" && playerInput == "rock"))
 
                 {
-                    Console.WriteLine("The computer chose: " + rollResult);
                     Console.WriteLine("You win!");
                 }
                 else
                 {
-                    Console.WriteLine("The computer chose: " + rollResult);
                     Console.WriteLine("You Lose!");
                 }
 
-                Console.WriteLine("Play again?: Y/N");
-                playAgain = Console.ReadLine()?.Trim().ToLower();
-                if (playAgain == "n")
+                //Replay
+                //Decided to make a method for a prompt of yes/no, reusable for other projects.
+                continueGame = yesOrNo.PromptYesNo("Play again? y/n ");
+
+                /* Old Method:
+                bool playAgain = true;
+                while (playAgain)
                 {
-                    continueGame = false;
+                    Console.WriteLine("Play again?: Y/N");
+                    playerInput = Console.ReadLine()?.Trim().ToLower();
+                    if (playerInput != "y" && playerInput != "n")
+                    {
+                        Console.WriteLine("Wrong entry!");
+                        continue;
+                    }
+                    else if (playerInput == "n")
+                    {
+                        //Ending Message
+                        Console.WriteLine("Thanks for playing!");
+                        continueGame = false;
+                        playAgain = false;
+
+                    }
+                    else 
+                    {
+                        playAgain = false;
+                    }
                 }
+                */
 
             }
             while (continueGame);
